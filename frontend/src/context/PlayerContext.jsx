@@ -29,7 +29,12 @@ const PlayerContextProvider = ({ children }) => {
             }
         }, 1000);
     }, [audioRef])
-    const contextValue = { audioRef, seekBg, seekBar, track, setTrack, playStatus, setPlayStatus, time, setTime, play, pause }
+    const playWithId = async (id) => {
+        await setTrack(songsData[id])
+        await audioRef.current.play()
+        setPlayStatus(true)
+    }
+    const contextValue = { audioRef, seekBg, seekBar, track, setTrack, playStatus, setPlayStatus, time, setTime, play, pause, playWithId }
     return <PlayerContext.Provider value={contextValue}>
         {children}
     </PlayerContext.Provider>
