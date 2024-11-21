@@ -14,7 +14,7 @@ const addSong = async (req, res) => {
         const songData = {
             name, desc, album, image: 'imageUpload.secure_url', file: 'audioUpload.secure_url', duration: '5: 0'
         }
-        const song = new songModel(songData)
+        const song = songModel(songData)
         await song.save()
         return res.json({ success: true, message: "Song added" })
     } catch (error) {
